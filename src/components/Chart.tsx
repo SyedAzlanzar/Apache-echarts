@@ -23,7 +23,7 @@ const Chart = () => {
     // ECharts options for the bar chart
    const options:echarts.EChartsOption = {
         title: {
-          text: ''
+          text: '',
         },
        
       // legend:{
@@ -32,9 +32,9 @@ const Chart = () => {
       // },
        
         grid: {
-          left: '1%',
-          right: '1%',
-          bottom: '%',
+          left: '10%',    // Adjust the left margin as needed
+          right: '10%',   // Adjust the right margin as needed
+          bottom: '2%',
           containLabel: true
         },
         xAxis: {
@@ -49,13 +49,19 @@ const Chart = () => {
             name: 'Chart',
             type: 'bar',
             stack: 'Total',
-            silent: false,
+            silent: true,
             barCategoryGap: '3%', // Adjust the gap between bars
             itemStyle: {
               borderColor: 'transparent',
               color: 'transparent'
             },
-            data: [0,200,400,600,800]
+            emphasis: {
+              itemStyle: {
+                borderColor: 'transparent',
+                color: 'transparent'
+              }
+            },
+            data: [0,379,587,355,348,-14]
           },
           {
             name: 'INCOMING',
@@ -63,7 +69,11 @@ const Chart = () => {
             stack: 'Total',
             label: {
               show: true,
-              position: 'top'
+              position: 'top',
+              formatter: function (params:any) {
+                // Display a '-' sign for expense values
+                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+              }
             },
             itemStyle: {
                     borderColor: 'transparent',
@@ -77,7 +87,7 @@ const Chart = () => {
                       },
                     },
                     
-            data: ["+379", "+326", "-", '-', '-', "-"]
+            data: [379, 326, "-", '-', '-', "-"]
           },
           {
             name: 'OUTGOING',
@@ -86,7 +96,11 @@ const Chart = () => {
             
             label: {
               show: true,
-              position: 'top'
+              position: 'bottom',
+              formatter: function (params:any) {
+                // Display a '-' sign for expense values
+                return params.value > 0 ? '-' + Math.abs(params.value) : params.value;
+              }
             },
             itemStyle: {
                     borderColor: 'transparent',
@@ -99,7 +113,7 @@ const Chart = () => {
                         return colorMap[params.name] || 'transparent';
                       },
                     },
-            data: ["-", "-", "-118", '-232', '-', "-"]
+            data: ["-", "-", 118, 232, '-', "-"]
           },
           {
             name: 'Discrepancies',
@@ -107,7 +121,11 @@ const Chart = () => {
             stack: 'Total',
             label: {
               show: true,
-              position: 'top'
+              position: 'top',
+              formatter: function (params:any) {
+                // Display a '-' sign for expense values
+                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+              }
             },
             itemStyle: {
                 borderColor: 'transparent',
@@ -119,7 +137,7 @@ const Chart = () => {
                     return colorMap[params.name] || 'transparent';
                   },
                 },
-            data: ['-', '-', '-', "-",'+7', '-']
+            data: ['-', '-', '-', "-",7, '-']
           },
           {
             name: 'Net Change',
@@ -127,7 +145,11 @@ const Chart = () => {
             stack: 'Total',
             label: {
               show: true,
-              position: 'top'
+              position: 'top',
+              formatter: function (params:any) {
+                // Display a '-' sign for expense values
+                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+              }
             },
             itemStyle: {
                 borderColor: 'transparent',
@@ -139,9 +161,59 @@ const Chart = () => {
                     return colorMap[params.name] || 'transparent';
                   },
                 },
-            data: ['-', '-', '-', "-",'-', '+362']
+            data: ['-', '-', '-', "-",'-', 362]
           }
         ],
+        graphic:[ 
+         
+          {
+            type: 'text',
+            left: '3%',
+            top: '80%', // Adjust the vertical position as needed
+            style: {
+              text: '4.85k',
+              align: 'center',
+              fontWeight: 'bold', // Set to bold
+              fill: '#000', // Adjust the text color as needed
+              fontSize: 14 // Adjust the font size as needed
+            }
+          },
+         
+          {
+            type: 'text',
+            left: '0%',   // Adjust the left position for starting income
+            top: '83%',
+            style: {
+              text: 'Starting Income',
+              align:'left',
+              fill: '#666',
+              fontSize: 12
+            }
+          },
+          {
+            type: 'text',
+            right: '0%',   // Adjust the left position for starting income
+            top: '53%',
+            style: {
+              text: `Ending Headcount`,
+              align:'center',
+              fill: '#666',
+              fontSize: 12
+            }
+          },
+          {
+            type: 'text',
+            right: '3%',
+            top: '50%', // Adjust the vertical position as needed
+            style: {
+              text: '5.23k',
+              align: 'center',
+              fontWeight: 'bold', // Set to bold
+              fill: '#000', // Adjust the text color as needed
+              fontSize: 14 // Adjust the font size as needed
+            }
+          },
+        ]
       };
 
 
