@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.children-container {
+  margin: 0;
+  width: 80%;
+  padding: 1rem;
+}
+
+.sidebar-container {
+  width: 20%;
+  padding: 0rem;
+  background-color: #F3F4F6;
+  min-height: 100vh;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1019607843);
+}
+.sidebar-container .base-heading {
+  font-size: 20px;
+  padding: 0.25rem 0;
+  margin: 1rem 0.5rem;
+}
+.sidebar-container h5 {
+  color: #525C6A;
+  padding: 0px 0.5rem;
+  margin: 0;
+}
+
+.display-side-nav-parent {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1647058824);
+  border-radius: 3px;
+  margin: 2px 3px;
+  padding: 10px 8px;
+}
+.display-side-nav-parent p {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.display-side-nav-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart-headers .emp-b-movement {
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1019607843);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.5rem;
+  font-weight: 600;
+  border-radius: 3px;
+}
+.chart-headers .chart-options-parent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.chart-headers .chart-options-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1019607843);
+}
+.chart-headers .chart-options-child p {
+  margin: 0;
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 98vh;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.not-found-heading {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: red;
+}
+
+.not-found-text {
+  font-size: 18px;
+  color: #888;
+}/*# sourceMappingURL=global.css.map */
