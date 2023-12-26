@@ -13,12 +13,12 @@ body {
 
 .children-container {
   margin: 0;
-  width: 80%;
+  width: 77%;
   padding: 1rem;
 }
 
 .sidebar-container {
-  width: 250px;
+  width: 23%;
   padding: 0rem;
   background-color: #F3F4F6;
   min-height: 100vh;

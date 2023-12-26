@@ -25,9 +25,9 @@ function Layout({ children}) {
 
   return (
     <div className='layout' 
-    style={{position:size<=1024? "relative":'unset'}}
+    style={{position:size<=1024? "relative":'static'}}
     >
-      <div className='children-container' style={{width:size<=1024? "100%":'80%'}} >
+      <div className='children-container'  >
         {children}
       </div>
       {size >= 1024 ? <SideNavbar  />:
