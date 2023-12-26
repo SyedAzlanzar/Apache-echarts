@@ -36,7 +36,7 @@ body{
 }
 
 .sidebar-container{
-  width: 20%;
+  width: 250px;
   padding: 0rem;
   background-color: #F3F4F6;
   min-height: 100vh;
@@ -46,7 +46,7 @@ body{
     padding: 0.25rem 0;
     margin: 1rem 0.5rem;
   }
- 
+
   h5{
     color: #525C6A;
     padding: 0px 0.5rem;
@@ -54,6 +54,8 @@ body{
   }
   
 }
+
+
 
 
 .display-side-nav-parent{
@@ -70,10 +72,34 @@ body{
   }
 }
 
+.mobile-navbar-container{
+  width: 250px;
+  padding: 0rem;
+  background-color: #F3F4F6;
+  min-height: 100vh;
+  box-shadow: 0px 0px 4px 1px #0000001a;
+  position: absolute;
+  right: 0;
+  top: 35px;
+  .base-heading{
+    font-size: $base-heading;
+    padding: 0.25rem 0;
+    margin: 1rem 0.5rem;
+  }
+
+  h5{
+    color: #525C6A;
+    padding: 0px 0.5rem;
+    margin: 0;
+  }
+  
+}
+
 .display-side-nav-child{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .chart-headers{

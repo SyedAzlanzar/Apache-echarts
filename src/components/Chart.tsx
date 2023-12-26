@@ -6,8 +6,8 @@ import { FaPlus } from "react-icons/fa";
 
 
 const styles={
-  height:"85%",
-  width:"90%"
+  height:"600px",
+  width:"auto"
 }
 
 const Chart = () => {
@@ -15,6 +15,10 @@ const Chart = () => {
     // Initialize ECharts instance
     const chartDom = document.getElementById('basicBarChart');
     const myChart = echarts.init(chartDom);
+
+    window.addEventListener('resize', function() {
+      myChart.resize();
+    });
 
     // ECharts options for the bar chart
    const options:echarts.EChartsOption = {
@@ -45,7 +49,7 @@ const Chart = () => {
             name: 'Chart',
             type: 'bar',
             stack: 'Total',
-            silent: true,
+            silent: false,
             barCategoryGap: '3%', // Adjust the gap between bars
             itemStyle: {
               borderColor: 'transparent',
@@ -102,8 +106,8 @@ const Chart = () => {
             type: 'bar',
             stack: 'Total',
             label: {
-              show: false,
-              position: 'bottom'
+              show: true,
+              position: 'top'
             },
             itemStyle: {
                 borderColor: 'transparent',
@@ -122,8 +126,8 @@ const Chart = () => {
             type: 'bar',
             stack: 'Total',
             label: {
-              show: false,
-              position: 'bottom'
+              show: true,
+              position: 'top'
             },
             itemStyle: {
                 borderColor: 'transparent',

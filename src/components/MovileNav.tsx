@@ -1,10 +1,10 @@
 import { SideNavAnalyticsdata, SideNavdata } from "src/mocks/data"
 import DisplaySideNav from "./DisplaySideNav"
 
-const SideNavbar = () => {
+const MobileNav = () => {
    
     return (
-        <div className="sidebar-container">
+        <div className="mobile-navbar-container">
             <h4 className="base-heading" >Net Change</h4>
             {SideNavdata.map((item) => <DisplaySideNav
                 heading={item.name}
@@ -23,4 +23,4 @@ const SideNavbar = () => {
     )
 }
 
-export default SideNavbar
+export default MobileNav

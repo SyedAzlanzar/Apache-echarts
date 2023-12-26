@@ -18,7 +18,7 @@ body {
 }
 
 .sidebar-container {
-  width: 20%;
+  width: 250px;
   padding: 0rem;
   background-color: #F3F4F6;
   min-height: 100vh;
@@ -49,10 +49,32 @@ body {
   font-size: 14px;
 }
 
+.mobile-navbar-container {
+  width: 250px;
+  padding: 0rem;
+  background-color: #F3F4F6;
+  min-height: 100vh;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1019607843);
+  position: absolute;
+  right: 0;
+  top: 35px;
+}
+.mobile-navbar-container .base-heading {
+  font-size: 20px;
+  padding: 0.25rem 0;
+  margin: 1rem 0.5rem;
+}
+.mobile-navbar-container h5 {
+  color: #525C6A;
+  padding: 0px 0.5rem;
+  margin: 0;
+}
+
 .display-side-nav-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .chart-headers .emp-b-movement {
