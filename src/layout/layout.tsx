@@ -32,7 +32,7 @@ function Layout({ children}) {
       </div>
       {size >= 1024 ? <SideNavbar  />:
      <div>
-     <IoMenu size={30} style={{padding:3}} onClick={menuHandler} />
+     <IoMenu size={30} style={{padding:8}} onClick={menuHandler} />
       {open && 
         <MobileNav />
       }
