@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts'; // Import all echarts modules
 import { BsCalendar2Date } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
@@ -11,6 +11,151 @@ const styles={
 }
 
 const Chart = () => {
+
+  const [jsonData, setJsonData] = useState<any>({
+    xAxisData:  ["Expantion","Replacement","Involuntary Turnover","Voluntary Turnover","Discrepancies","Net Change"],
+    seriesData: [
+      {
+        name: 'Chart',
+        type: 'bar',
+        stack: 'Total',
+        silent: true,
+        barCategoryGap: '3%', // Adjust the gap between bars
+        itemStyle: {
+          borderColor: 'transparent',
+          color: 'transparent'
+        },
+        emphasis: {
+          itemStyle: {
+            borderColor: 'transparent',
+            color: 'transparent'
+          }
+        },
+        data: [0,379,587,355,348,-14]
+      },
+      {
+        name: 'INCOMING',
+        type: 'bar',
+        stack: 'Total',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function (params:any) {
+            // Display a '-' sign for expense values
+            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+          }
+        },
+        itemStyle: {
+                borderColor: 'transparent',
+                color: function (params) {
+                    // Define color based on category
+                    const colorMap = {
+                      'Expantion': '#9BEBB4',
+                      'Replacement': '#9BEBB4',
+                    };
+                    return colorMap[params.name] || 'transparent';
+                  },
+                },
+                
+        data: [379, 326, "-", '-', '-', "-"]
+      },
+      {
+        name: 'OUTGOING',
+        type: 'bar',
+        stack: 'Total',
+        
+        label: {
+          show: true,
+          position: 'bottom',
+          formatter: function (params:any) {
+            // Display a '-' sign for expense values
+            return params.value > 0 ? '-' + Math.abs(params.value) : params.value;
+          }
+        },
+        itemStyle: {
+                borderColor: 'transparent',
+                color: function (params) {
+                    // Define color based on category
+                    const colorMap = {
+                        'Involuntary Turnover': '#FDACAA',
+                        'Voluntary Turnover': '#FDACAA',
+                    };
+                    return colorMap[params.name] || 'transparent';
+                  },
+                },
+        data: ["-", "-", 118, 232, '-', "-"]
+      },
+      {
+        name: 'Discrepancies',
+        type: 'bar',
+        stack: 'Total',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function (params:any) {
+            // Display a '-' sign for expense values
+            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+          }
+        },
+        itemStyle: {
+            borderColor: 'transparent',
+            color: function (params) {
+                // Define color based on category
+                const colorMap = {
+                    'Discrepancies': '#C4C8CF',
+                };
+                return colorMap[params.name] || 'transparent';
+              },
+            },
+        data: ['-', '-', '-', "-",7, '-']
+      },
+      {
+        name: 'Net Change',
+        type: 'bar',
+        stack: 'Total',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function (params:any) {
+            // Display a '-' sign for expense values
+            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
+          }
+        },
+        itemStyle: {
+            borderColor: 'transparent',
+            color: function (params) {
+                // Define color based on category
+                const colorMap = {
+                    'Net Change': '#BEDCFE',
+                };
+                return colorMap[params.name] || 'transparent';
+              },
+            },
+        data: ['-', '-', '-', "-",'-', 362]
+      }
+    ],
+  });
+  const [jsonInput, setJsonInput] = useState('');
+
+  const handleJsonInputChange = (event) => {
+    setJsonInput(event.target.value);
+  };
+
+  const handleApplyJson = () => {
+    const temp =JSON.stringify(jsonInput)
+    try {
+      const parsedData = JSON.parse(temp);
+      const tempo = JSON.parse(parsedData)
+      setJsonData({
+        xAxisData:tempo?.xAxisData,
+        seriesData:tempo?.series
+      });
+      setJsonInput("")
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+      // Handle parsing error if needed
+    }
+  };
   useEffect(() => {
     // Initialize ECharts instance
     const chartDom = document.getElementById('basicBarChart');
@@ -39,131 +184,12 @@ const Chart = () => {
         },
         xAxis: {
           type: 'category',
-          data: ["Expantion","Replacement","Involuntary Turnover","Voluntary Turnover","Discrepancies","Net Change"]
+          data:jsonData.xAxisData
         },
         yAxis: {
           type: 'value'
         },
-        series: [
-          {
-            name: 'Chart',
-            type: 'bar',
-            stack: 'Total',
-            silent: true,
-            barCategoryGap: '3%', // Adjust the gap between bars
-            itemStyle: {
-              borderColor: 'transparent',
-              color: 'transparent'
-            },
-            emphasis: {
-              itemStyle: {
-                borderColor: 'transparent',
-                color: 'transparent'
-              }
-            },
-            data: [0,379,587,355,348,-14]
-          },
-          {
-            name: 'INCOMING',
-            type: 'bar',
-            stack: 'Total',
-            label: {
-              show: true,
-              position: 'top',
-              formatter: function (params:any) {
-                // Display a '-' sign for expense values
-                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-              }
-            },
-            itemStyle: {
-                    borderColor: 'transparent',
-                    color: function (params) {
-                        // Define color based on category
-                        const colorMap = {
-                          'Expantion': '#9BEBB4',
-                          'Replacement': '#9BEBB4',
-                        };
-                        return colorMap[params.name] || 'transparent';
-                      },
-                    },
-                    
-            data: [379, 326, "-", '-', '-', "-"]
-          },
-          {
-            name: 'OUTGOING',
-            type: 'bar',
-            stack: 'Total',
-            
-            label: {
-              show: true,
-              position: 'bottom',
-              formatter: function (params:any) {
-                // Display a '-' sign for expense values
-                return params.value > 0 ? '-' + Math.abs(params.value) : params.value;
-              }
-            },
-            itemStyle: {
-                    borderColor: 'transparent',
-                    color: function (params) {
-                        // Define color based on category
-                        const colorMap = {
-                            'Involuntary Turnover': '#FDACAA',
-                            'Voluntary Turnover': '#FDACAA',
-                        };
-                        return colorMap[params.name] || 'transparent';
-                      },
-                    },
-            data: ["-", "-", 118, 232, '-', "-"]
-          },
-          {
-            name: 'Discrepancies',
-            type: 'bar',
-            stack: 'Total',
-            label: {
-              show: true,
-              position: 'top',
-              formatter: function (params:any) {
-                // Display a '-' sign for expense values
-                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-              }
-            },
-            itemStyle: {
-                borderColor: 'transparent',
-                color: function (params) {
-                    // Define color based on category
-                    const colorMap = {
-                        'Discrepancies': '#C4C8CF',
-                    };
-                    return colorMap[params.name] || 'transparent';
-                  },
-                },
-            data: ['-', '-', '-', "-",7, '-']
-          },
-          {
-            name: 'Net Change',
-            type: 'bar',
-            stack: 'Total',
-            label: {
-              show: true,
-              position: 'top',
-              formatter: function (params:any) {
-                // Display a '-' sign for expense values
-                return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-              }
-            },
-            itemStyle: {
-                borderColor: 'transparent',
-                color: function (params) {
-                    // Define color based on category
-                    const colorMap = {
-                        'Net Change': '#BEDCFE',
-                    };
-                    return colorMap[params.name] || 'transparent';
-                  },
-                },
-            data: ['-', '-', '-', "-",'-', 362]
-          }
-        ],
+        series: jsonData.seriesData,
         graphic:[ 
          
           {
@@ -224,11 +250,24 @@ const Chart = () => {
     return () => {
       myChart.dispose();
     };
-  }, []); // Empty dependency array ensures useEffect runs only once after the initial render
+  }, [jsonData.series,jsonData.xAxisData]); // Empty dependency array ensures useEffect runs only once after the initial render
 
   return (
     <React.Fragment>
+      
     <div className='chart-headers'>
+    <div style={{ margin: "10px" }}>
+                <textarea
+                    style={{  margin: 0, padding: '10px',resize:'none' }}
+                    value={jsonInput}
+                    onChange={handleJsonInputChange}
+                    placeholder="Enter JSON data here..."
+                    rows={5} cols={40}
+                />
+               <div> <button
+                onClick={handleApplyJson}
+                >Enter</button></div>
+            </div>
       <p className='emp-b-movement'>Employee Movement Breakdown</p>
       <div className='chart-options-parent'>
         <div className='chart-options-child'>
@@ -241,7 +280,6 @@ const Chart = () => {
           <FaPlus size={12} />
           <p>
           Add Filters
-
           </p>
         </div>
       </div>

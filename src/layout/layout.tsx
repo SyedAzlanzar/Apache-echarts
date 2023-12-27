@@ -8,6 +8,8 @@ function Layout({ children}) {
   const [size, setSize] = useState(0);
   const [open,setOpen]=useState<boolean>(false)
 
+ 
+
   const menuHandler = ()=>{
     setOpen((prev)=>!prev);
   } 
@@ -27,10 +29,11 @@ function Layout({ children}) {
     <div className='layout' 
     style={{position:size<=1024? "relative":'static'}}
     >
-      <div className='children-container'  >
+      <div className='children-container'>
         {children}
       </div>
-      {size >= 1024 ? <SideNavbar  />:
+      {size >= 1024 ? <SideNavbar
+      />:
      <div>
      <IoMenu size={30} style={{padding:8}} onClick={menuHandler} />
       {open && 
