@@ -11,7 +11,6 @@ const styles={
 
 const Chart = () => {
   const [jsonData, setJsonData] = useState<any>(chartMockData);
-  console.log( JSON.stringify(chartMockData))
   const [jsonInput, setJsonInput] = useState('');
 
   const handleJsonInputChange = (event) => {
