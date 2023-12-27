@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts'; // Import all echarts modules
+import React, { useEffect, useState } from 'react';
 import { BsCalendar2Date } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
-
-
+import { chartMockData } from 'src/mocks/data';
 
 const styles={
   height:"600px",
@@ -11,130 +10,8 @@ const styles={
 }
 
 const Chart = () => {
-
-  const [jsonData, setJsonData] = useState<any>({
-    xAxisData:  ["Expantion","Replacement","Involuntary Turnover","Voluntary Turnover","Discrepancies","Net Change"],
-    seriesData: [
-      {
-        name: 'Chart',
-        type: 'bar',
-        stack: 'Total',
-        silent: true,
-        barCategoryGap: '3%', // Adjust the gap between bars
-        itemStyle: {
-          borderColor: 'transparent',
-          color: 'transparent'
-        },
-        emphasis: {
-          itemStyle: {
-            borderColor: 'transparent',
-            color: 'transparent'
-          }
-        },
-        data: [0,379,587,355,348,-14]
-      },
-      {
-        name: 'INCOMING',
-        type: 'bar',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'top',
-          formatter: function (params:any) {
-            // Display a '-' sign for expense values
-            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-          }
-        },
-        itemStyle: {
-                borderColor: 'transparent',
-                color: function (params) {
-                    // Define color based on category
-                    const colorMap = {
-                      'Expantion': '#9BEBB4',
-                      'Replacement': '#9BEBB4',
-                    };
-                    return colorMap[params.name] || 'transparent';
-                  },
-                },
-                
-        data: [379, 326, "-", '-', '-', "-"]
-      },
-      {
-        name: 'OUTGOING',
-        type: 'bar',
-        stack: 'Total',
-        
-        label: {
-          show: true,
-          position: 'bottom',
-          formatter: function (params:any) {
-            // Display a '-' sign for expense values
-            return params.value > 0 ? '-' + Math.abs(params.value) : params.value;
-          }
-        },
-        itemStyle: {
-                borderColor: 'transparent',
-                color: function (params) {
-                    // Define color based on category
-                    const colorMap = {
-                        'Involuntary Turnover': '#FDACAA',
-                        'Voluntary Turnover': '#FDACAA',
-                    };
-                    return colorMap[params.name] || 'transparent';
-                  },
-                },
-        data: ["-", "-", 118, 232, '-', "-"]
-      },
-      {
-        name: 'Discrepancies',
-        type: 'bar',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'top',
-          formatter: function (params:any) {
-            // Display a '-' sign for expense values
-            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-          }
-        },
-        itemStyle: {
-            borderColor: 'transparent',
-            color: function (params) {
-                // Define color based on category
-                const colorMap = {
-                    'Discrepancies': '#C4C8CF',
-                };
-                return colorMap[params.name] || 'transparent';
-              },
-            },
-        data: ['-', '-', '-', "-",7, '-']
-      },
-      {
-        name: 'Net Change',
-        type: 'bar',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'top',
-          formatter: function (params:any) {
-            // Display a '-' sign for expense values
-            return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
-          }
-        },
-        itemStyle: {
-            borderColor: 'transparent',
-            color: function (params) {
-                // Define color based on category
-                const colorMap = {
-                    'Net Change': '#BEDCFE',
-                };
-                return colorMap[params.name] || 'transparent';
-              },
-            },
-        data: ['-', '-', '-', "-",'-', 362]
-      }
-    ],
-  });
+  const [jsonData, setJsonData] = useState<any>(chartMockData);
+  console.log( JSON.stringify(chartMockData))
   const [jsonInput, setJsonInput] = useState('');
 
   const handleJsonInputChange = (event) => {

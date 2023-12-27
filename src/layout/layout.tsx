@@ -3,17 +3,13 @@ import SideNavbar from 'src/components/SideNavbar';
 import { IoMenu } from "react-icons/io5";
 import MobileNav from 'src/components/MovileNav';
 
-
 function Layout({ children}) {
   const [size, setSize] = useState(0);
   const [open,setOpen]=useState<boolean>(false)
 
- 
-
   const menuHandler = ()=>{
     setOpen((prev)=>!prev);
   } 
-
 
   useLayoutEffect(() => {
     function updateSize() {
@@ -23,7 +19,6 @@ function Layout({ children}) {
     updateSize();
     return () => window.removeEventListener("resize", updateSize);
   }, []);
-
 
   return (
     <div className='layout' 

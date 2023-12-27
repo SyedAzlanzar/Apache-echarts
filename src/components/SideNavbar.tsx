@@ -1,12 +1,7 @@
 import { SideNavAnalyticsdata, SideNavdata } from "src/mocks/data"
 import DisplaySideNav from "./DisplaySideNav"
 
-
-
 const SideNavbar = () => {
-
-   
-
     return (
         <div className="sidebar-container">
             <h4 className="base-heading" >Net Change</h4>
