@@ -23,7 +23,7 @@ export const chartMockData = {
       type: 'bar',
       stack: 'Total',
       silent: true,
-      barCategoryGap: '3%', // Adjust the gap between bars
+      barCategoryGap: '3%', 
       itemStyle: {
         borderColor: 'transparent',
         color: 'transparent'
@@ -44,14 +44,12 @@ export const chartMockData = {
         show: true,
         position: 'top',
         formatter: function (params:any) {
-          // Display a '-' sign for expense values
           return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
         }
       },
       itemStyle: {
               borderColor: 'transparent',
               color: function (params) {
-                  // Define color based on category
                   const colorMap = {
                     'Expantion': '#9BEBB4',
                     'Replacement': '#9BEBB4',
@@ -71,14 +69,12 @@ export const chartMockData = {
         show: true,
         position: 'bottom',
         formatter: function (params:any) {
-          // Display a '-' sign for expense values
           return params.value > 0 ? '-' + Math.abs(params.value) : params.value;
         }
       },
       itemStyle: {
               borderColor: 'transparent',
               color: function (params) {
-                  // Define color based on category
                   const colorMap = {
                       'Involuntary Turnover': '#FDACAA',
                       'Voluntary Turnover': '#FDACAA',
@@ -96,14 +92,12 @@ export const chartMockData = {
         show: true,
         position: 'top',
         formatter: function (params:any) {
-          // Display a '-' sign for expense values
           return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
         }
       },
       itemStyle: {
           borderColor: 'transparent',
           color: function (params) {
-              // Define color based on category
               const colorMap = {
                   'Discrepancies': '#C4C8CF',
               };
@@ -120,14 +114,12 @@ export const chartMockData = {
         show: true,
         position: 'top',
         formatter: function (params:any) {
-          // Display a '-' sign for expense values
           return params.value > 0 ? '+' + Math.abs(params.value) : params.value;
         }
       },
       itemStyle: {
           borderColor: 'transparent',
           color: function (params) {
-              // Define color based on category
               const colorMap = {
                   'Net Change': '#BEDCFE',
               };

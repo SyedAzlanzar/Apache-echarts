@@ -1,15 +1,15 @@
-import React, { useLayoutEffect, useState } from 'react'
-import SideNavbar from 'src/components/SideNavbar';
+import React, { useLayoutEffect, useState } from "react";
+import SideNavbar from "src/components/SideNavbar";
 import { IoMenu } from "react-icons/io5";
-import MobileNav from 'src/components/MovileNav';
+import MobileNav from "src/components/MovileNav";
 
-function Layout({ children}) {
+function Layout({ children }) {
   const [size, setSize] = useState(0);
-  const [open,setOpen]=useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false);
 
-  const menuHandler = ()=>{
-    setOpen((prev)=>!prev);
-  } 
+  const menuHandler = () => {
+    setOpen((prev) => !prev);
+  };
 
   useLayoutEffect(() => {
     function updateSize() {
@@ -21,20 +21,19 @@ function Layout({ children}) {
   }, []);
 
   return (
-    <div className='layout' 
-    style={{position:size<=1024? "relative":'static'}}
+    <div
+      className="layout"
+      style={{ position: size <= 1024 ? "relative" : "static" }}
     >
-      <div className='children-container'>
-        {children}
-      </div>
-      {size >= 1024 ? <SideNavbar
-      />:
-     <div>
-     <IoMenu size={30} style={{padding:8}} onClick={menuHandler} />
-      {open && 
-        <MobileNav />
-      }
-     </div>}
+      <div className="children-container">{children}</div>
+      {size >= 1024 ? (
+        <SideNavbar />
+      ) : (
+        <div>
+          <IoMenu size={30} style={{ padding: 8 }} onClick={menuHandler} />
+          {open && <MobileNav />}
+        </div>
+      )}
     </div>
   );
 }
