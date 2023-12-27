@@ -250,7 +250,7 @@ const Chart = () => {
     return () => {
       myChart.dispose();
     };
-  }, [jsonData.series,jsonData.xAxisData]); // Empty dependency array ensures useEffect runs only once after the initial render
+  }, [jsonData.seriesData,jsonData.xAxisData]); // Empty dependency array ensures useEffect runs only once after the initial render
 
   return (
     <React.Fragment>
