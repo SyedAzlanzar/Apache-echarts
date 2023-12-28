@@ -14,6 +14,12 @@ const Chart = () => {
   const [jsonInput, setJsonInput] = useState("");
 
   const handleJsonInputChange = (event) => {
+
+      if(!event.target.value ) {
+        setJsonData(chartMockData)
+        setJsonInput("")
+         return
+      }
     const temp = JSON.stringify(event.target.value);
     try {
       const parsedData = JSON.parse(temp);
