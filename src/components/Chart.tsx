@@ -14,11 +14,7 @@ const Chart = () => {
   const [jsonInput, setJsonInput] = useState("");
 
   const handleJsonInputChange = (event) => {
-    setJsonInput(event.target.value);
-  };
-
-  const handleApplyJson = () => {
-    const temp = JSON.stringify(jsonInput);
+    const temp = JSON.stringify(event.target.value);
     try {
       const parsedData = JSON.parse(temp);
       const tempo = JSON.parse(parsedData);
@@ -26,11 +22,14 @@ const Chart = () => {
         xAxisData: tempo?.xAxisData,
         seriesData: tempo?.series,
       });
-      setJsonInput("");
+    setJsonInput(event.target.value);
+      // setJsonInput("");
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
   };
+
+
   useEffect(() => {
     const chartDom = document.getElementById("basicBarChart");
     const myChart = echarts.init(chartDom);
@@ -116,7 +115,7 @@ const Chart = () => {
     return () => {
       myChart.dispose();
     };
-  }, [jsonData.seriesData, jsonData.xAxisData]);
+  }, [jsonInput]);
 
   return (
     <React.Fragment>
@@ -127,13 +126,10 @@ const Chart = () => {
             value={jsonInput}
             onChange={handleJsonInputChange}
             placeholder="Enter JSON data here..."
-            rows={5}
-            cols={40}
+            rows={10}
+            cols={50}
           />
-          <div>
-            {" "}
-            <button onClick={handleApplyJson}>Enter</button>
-          </div>
+        
         </div>
         <p className="emp-b-movement">Employee Movement Breakdown</p>
         <div className="chart-options-parent">
