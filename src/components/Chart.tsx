@@ -115,7 +115,7 @@ const Chart = () => {
     return () => {
       myChart.dispose();
     };
-  }, [jsonInput]);
+  }, [jsonInput,jsonData.seriesData,jsonData.xAxisData]);
 
   return (
     <React.Fragment>
